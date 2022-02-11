@@ -1,0 +1,46 @@
+﻿@using mitoSoft.Razor.WordClock.Helper
+@using System.Linq
+
+@*<div class="container d-flex h-100">
+    <div class="justify-content-center align-self-center">*@
+<div class="text-center">
+    @if (!IsEnabled())
+    {
+        <label class="mitosoft-wordclock-disabled mitosoft-wordclock-font">@Letter</label>
+    }
+    else
+    {
+        <label class="mitosoft-wordclock-enabled mitosoft-wordclock-font">@Letter</label>
+    }
+</div>
+@*</div>*@
+
+@code {
+    [Parameter]
+    public int Row { get; set; } = default!;
+
+    [Parameter]
+    public int Col { get; set; } = default!;
+
+    public string Letter => LetterMatrix.GetLetter(this.Row, this.Col);
+
+    [Parameter]
+    public List<string> Positions { get; set; } = new();
+
+    private bool IsEnabled()
+    {
+        if (Positions == null)
+        {
+            return false;
+        }
+
+        foreach (var position in Positions)
+        {
+            if (position.Trim() == $"{this.Row};{this.Col}")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}

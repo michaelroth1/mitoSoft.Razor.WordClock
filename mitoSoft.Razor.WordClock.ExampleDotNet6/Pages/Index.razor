@@ -1,0 +1,46 @@
+﻿@page "/"
+
+@implements IDisposable
+
+<style>
+    .mitosoft-wordclock-font {
+        font-size: 3vw;
+        font-weight: 100;
+    }
+
+    .mitosoft-wordclock-disabled {
+        color: #D3D3D3;
+    }
+
+    .mitosoft-wordclock-enabled {
+        color: black;
+    }
+</style>
+
+<PageTitle>Index</PageTitle>
+
+<mitoSoft.Razor.WordClock.View OnClick="@OnClockClicked" @ref="_clock" />
+
+@code {
+    private mitoSoft.Razor.WordClock.View _clock = default!;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            this._clock.StartClock();
+        }
+
+        base.OnAfterRender(firstRender);
+    }
+
+    private void OnClockClicked()
+    {
+
+    }
+
+    public void Dispose()
+    {
+        this._clock.StopClock();
+    }
+}
