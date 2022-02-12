@@ -1,8 +1,8 @@
 # mitoSoft.Razor.WordClock
 A razor library containing a work-clock element for displaying it on Blazor websites.
 
-Actually there are two cultures provided - english as well as german. Due to culture
-interfaces it is easily possible to extend the clock to every wanted culture.
+Actually there are three cultures provided - english, german as well as french. 
+Due to culture interfaces it is easily possible to extend the clock to every culture.
 
 ## Dependencies
 
@@ -46,3 +46,7 @@ A full blown usage is provided in the ExampleProject.
 
 A german version of the Clock is shown below
 ![Screenshot](WordClockExampleGerman.png)
+
+The french version
+![Screenshot](WordClockExampleFrench.png)
+
