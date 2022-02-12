@@ -63,9 +63,13 @@ namespace mitoSoft.Razor.WordClock.Cultures
                 case 25:
                     {
                         if (this._rnd.Next(0, 2) == 0)
+                        {
                             text = text.Replace("#mm#", "FIVE TO HALF PAST");
+                        }
                         else
+                        {
                             text = text.Replace("#mm#", "TWENTYFIVE PAST");
+                        }
                         break;
                     }
                 case 30:
@@ -76,19 +80,27 @@ namespace mitoSoft.Razor.WordClock.Cultures
                 case 35:
                     {
                         if (this._rnd.Next(0, 2) == 0)
+                        {
                             text = text.Replace("#mm#", "FIVE AFTER HALF PAST");
+                        }
                         else
+                        {
                             text = text.Replace("#mm#", "TWENTYFIVE TO");
-                        hour = (hour + 1).GetShortHour();
+                            hour = (hour + 1).GetShortHour();
+                        }
                         break;
                     }
                 case 40:
                     {
                         if (this._rnd.Next(0, 2) == 0)
+                        {
                             text = text.Replace("#mm#", "TEN AFTER HALF PAST");
+                        }
                         else
+                        {
                             text = text.Replace("#mm#", "TWENTY TO");
-                        hour = (hour + 1).GetShortHour();
+                            hour = (hour + 1).GetShortHour();
+                        }
                         break;
                     }
                 case 45:

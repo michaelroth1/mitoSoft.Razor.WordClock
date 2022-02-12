@@ -5,11 +5,11 @@ namespace mitoSoft.Razor.WordClock.Helpers
 {
     public class ClockService
     {
-        public ClockService(ICulture textBuilder)
+        public ClockService(ICulture culture)
         {
-            this.TextBuilder = textBuilder;
+            this.Culture = culture;
 
-            var matrix = this.TextBuilder.Layout.ToList();
+            var matrix = this.Culture.Layout.ToList();
 
             this.MatrixHelper = new MatrixHelper(matrix);
         }
@@ -21,7 +21,7 @@ namespace mitoSoft.Razor.WordClock.Helpers
 
         public MatrixHelper MatrixHelper { get; }
 
-        public ICulture TextBuilder { get; }
+        public ICulture Culture { get; }
 
 
         public bool GetPositions(out List<string> cells)
@@ -31,12 +31,14 @@ namespace mitoSoft.Razor.WordClock.Helpers
                 var minuteCells = SetEdges(DateTime.Now.Minute - RoundMinutes(DateTime.Now.Minute));
                 this._min = DateTime.Now.Minute;
 
-                var hour = DateTime.Now.Hour.GetShortHour();
-                var minute = RoundMinutes(DateTime.Now.Minute);
+                var time = DateTime.Now; //(1982, 3, 7, 12, 15, 45); //for testing
+
+                var hour = time.Hour.GetShortHour();
+                var minute = RoundMinutes(time.Minute);
 
                 if (hour != _hour || minute != _minute)
                 {
-                    string text = this.TextBuilder.GetText(hour, minute);
+                    string text = this.Culture.GetText(hour, minute);
 
                     this._textCells = SetText(text);
 

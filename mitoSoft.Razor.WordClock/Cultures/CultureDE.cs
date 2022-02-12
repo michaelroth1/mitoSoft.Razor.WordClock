@@ -58,11 +58,13 @@ namespace mitoSoft.Razor.WordClock.Cultures
                 case 20:
                     {
                         if (this._rnd.Next(0, 2) == 0)
+                        {
                             text = text.Replace("#mm#", "ZWANZIG NACH");
+                        }
                         else
                         {
                             text = text.Replace("#mm#", "ZEHN VOR HALB");
-                            hour = (hour + 1).GetShortHour(); 
+                            hour = (hour + 1).GetShortHour();
                         }
                         break;
                     }
@@ -93,10 +95,14 @@ namespace mitoSoft.Razor.WordClock.Cultures
                 case 45:
                     {
                         if (this._rnd.Next(0, 2) == 0)
+                        {
                             text = text.Replace("#mm#", "VIERTEL VOR");
+                        }
                         else
+                        {
                             text = text.Replace("#mm#", "DREIVIERTEL");
-                        hour = (hour + 1);
+                        }
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 50:
@@ -124,9 +130,13 @@ namespace mitoSoft.Razor.WordClock.Cultures
                 case 1:
                     {
                         if (minute != 0)
+                        {
                             text = text.Replace("#hh#", "EINS");
+                        }
                         else
+                        {
                             text = text.Replace("#hh#", "EIN");
+                        }
                         break;
                     }
                 case 2:
