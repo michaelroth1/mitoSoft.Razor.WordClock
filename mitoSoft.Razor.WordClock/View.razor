@@ -1,8 +1,9 @@
-﻿@using mitoSoft.Razor.WordClock.Helper
+﻿@using mitoSoft.Razor.WordClock.CultureMatrixes
+@using mitoSoft.Razor.WordClock.TextBuilders
 
 <div @onclick="@OnClicked" class="container grid-square">
     <div class="row">
-        <div class="col"><Cell Positions="@_positions" Row="-1" Col="-1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="-1" Col="-1" /></div>
         <div class="col"></div>
         <div class="col"></div>
         <div class="col"></div>
@@ -14,175 +15,175 @@
         <div class="col"></div>
         <div class="col"></div>
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="-2" Col="-2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="-2" Col="-2" /></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="0" Col="10" /></div>
-        <div class="col"></div>
-    </div>
-    <div class="row">
-        <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="1" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="0" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="2" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="1" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="3" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="2" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="4" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="3" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="5" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="4" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="6" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="5" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="7" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="6" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="8" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="7" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="9" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="8" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="0" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="1" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="2" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="3" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="4" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="5" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="6" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="7" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="8" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="9" /></div>
-        <div class="col"><Cell Positions="@_positions" Row="10" Col="10" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="9" Col="10" /></div>
         <div class="col"></div>
     </div>
     <div class="row">
-        <div class="col"><Cell Positions="@_positions" Row="-4" Col="-4" /></div>
+        <div class="col"></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="0" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="1" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="2" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="4" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="5" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="6" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="7" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="8" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="9" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="10" Col="10" /></div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="-4" Col="-4" /></div>
         <div class="col"></div>
         <div class="col"></div>
         <div class="col"></div>
@@ -194,14 +195,43 @@
         <div class="col"></div>
         <div class="col"></div>
         <div class="col"></div>
-        <div class="col"><Cell Positions="@_positions" Row="-3" Col="-3" /></div>
+        <div class="col"><Cell ClockService="@ClockService" Positions="@_positions" Row="-3" Col="-3" /></div>
     </div>
 </div>
 
 @code {
     private List<string> _positions { get; set; } = default!;
     private bool _cancelTask = false;
-    private Service _clockService = new();
+
+    public ClockService ClockService = default!;
+
+    public void SetCulture(ITextBuilder textBuilder, ICultureMatrix matrix)
+    {
+        this.ClockService = new(textBuilder, matrix);
+    }
+
+    protected override void OnInitialized()
+    {
+        ITextBuilder textBuilder;
+        ICultureMatrix matrix;
+        if (Culture == Culture.German)
+        {
+            matrix = new LetterMatrixDE();
+            textBuilder = new GermanTextBuilder();
+        }
+        else
+        {
+            matrix = new LetterMatrixEN();
+            textBuilder = new EnglishTextBuilder();
+        }
+
+        this.SetCulture(textBuilder, matrix);
+
+        base.OnInitialized();
+    }
+
+    [Parameter]
+    public Culture Culture { get; set; } = Culture.German;
 
     [Parameter]
     public Action OnClick { get; set; } = default!;
@@ -225,7 +255,7 @@
     {
         while (true)
         {
-            if (_clockService.GetPositions(out var positions))
+            if (ClockService.GetPositions(out var positions))
             {
                 this._positions = positions;
 

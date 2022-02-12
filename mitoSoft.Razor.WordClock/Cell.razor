@@ -1,5 +1,4 @@
-﻿@using mitoSoft.Razor.WordClock.Helper
-@using System.Linq
+﻿@using System.Linq
 
 @*<div class="container d-flex h-100">
     <div class="justify-content-center align-self-center">*@
@@ -22,7 +21,10 @@
     [Parameter]
     public int Col { get; set; } = default!;
 
-    public string Letter => LetterMatrix.GetLetter(this.Row, this.Col);
+    [Parameter]
+    public ClockService ClockService { get; set; } = default!;
+
+    public string Letter => ClockService.MatrixHelper.GetLetter(this.Row, this.Col);
 
     [Parameter]
     public List<string> Positions { get; set; } = new();

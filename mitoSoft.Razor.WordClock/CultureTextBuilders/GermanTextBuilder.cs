@@ -1,149 +1,14 @@
-﻿namespace mitoSoft.Razor.WordClock.Helper
+﻿using mitoSoft.Razor.WordClock.Contracts;
+
+namespace mitoSoft.Razor.WordClock.TextBuilders
 {
-    internal class Service
+    internal class GermanTextBuilder : ITextBuilder
     {
         private readonly Random _rnd = new(DateTime.Now.Millisecond);
-        private List<string> _textCells = new();
-        private int _hour;
-        private int _minute;
-        private int _min;
 
-        public bool GetPositions(out List<string> cells)
-        {
-            if (DateTime.Now.Minute != _min)
-            {
-                var minuteCells = SetMinutes(DateTime.Now.Minute - RoundMinutes(DateTime.Now.Minute));
-                this._min = DateTime.Now.Minute;
-
-                var hour = GetHour(DateTime.Now.Hour);
-                var minute = RoundMinutes(DateTime.Now.Minute);
-
-                if (hour != _hour || minute != _minute)
-                {
-                    string text = this.GetText(hour, minute);
-
-                    this._textCells = SetText(text);
-
-                    _hour = hour;
-                    _minute = minute;
-
-                }
-
-                this._textCells.AddRange(minuteCells);
-                cells = this._textCells;
-
-                return true;
-            }
-            cells = new();
-
-            return false;
-        }
-
-        private static List<string> SetMinutes(int minutes)
-        {
-            var result = new List<string>();
-
-            switch (minutes)
-            {
-                case 1:
-                    {
-                        result.Add("-1;-1");
-                        break;
-                    }
-
-                case 2:
-                    {
-                        result.Add("-1;-1");
-                        result.Add("-2;-2");
-                        break;
-                    }
-                case 3:
-                    {
-                        result.Add("-1;-1");
-                        result.Add("-2;-2");
-                        result.Add("-3;-3");
-                        break;
-                    }
-                case 4:
-                    {
-                        result.Add("-1;-1");
-                        result.Add("-2;-2");
-                        result.Add("-3;-3");
-                        result.Add("-4;-4");
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
-            }
-
-            return result;
-        }
-
-
-        private static List<string> SetText(string text)
-        {
-            var matrix = LetterMatrix.Cells;
-            var result = new List<string>();
-
-            string[] a = text.Replace(" ", "§").Split("§");
-            string word = a[0];
-            int i = 0;
-            for (int row = 0; row <= matrix.Max(c => c.Row) + 1; row++)
-            {
-                for (int col = 0; col <= matrix.Max(c => c.Col) + 1; col++)
-                {
-                    var actualText = GetTextOfMatrix(row, col, word.Length);
-                    if (actualText == word)
-                    {
-                        for (int pos = col; pos < col + word.Length; pos++)
-                        {
-                            result.Add($"{row};{pos}");
-                        }
-
-                        col = col + word.Length - 1;
-
-                        i += 1;
-                        if (a.GetUpperBound(0) >= i)
-                            word = a[i];
-                        else
-                            return result;
-                    }
-                }
-            }
-
-            return result;
-        }
-
-
-        public static string GetTextOfMatrix(int row, int column, int length)
-        {
-            var maxCols = LetterMatrix.Cells.Max(c => c.Col) + 1;
-            if (column + length > maxCols)
-            {
-                return "";
-            }
-
-            string text = "";
-            for (int i = 0; i <= length - 1; i++)
-            {
-                var letter = LetterMatrix.Cells.First(c => c.Row == row && c.Col == column + i).Letter;
-
-                text += letter;
-            }
-            return text;
-        }
-
-        public static int RoundMinutes(int minutes)
-        {
-            return minutes - (minutes % 5);
-        }
-
-        private string GetText(int hour, int minute)
+        public string GetText(int hour, int minute)
         {
             string text;
-
             if (minute == 0)
             {
                 text = "ES IST #mm# #hh#";
@@ -310,14 +175,11 @@
             return text;
         }
 
-        /// <summary>
-        /// Es werden nur die Stunden 1-12 zurückgegeben
-        /// </summary>
         private static int GetHour(int hour)
         {
-            if (hour > 12)
+            if (hour == 13)
             {
-                return hour - 12;
+                return 1;
             }
             else
             {

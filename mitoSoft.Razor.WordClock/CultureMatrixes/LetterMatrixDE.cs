@@ -1,15 +1,16 @@
-﻿namespace mitoSoft.Razor.WordClock.Helper
-{
-    internal static class LetterMatrix
-    {
-        public static string GetLetter(int row, int col)
-        {
-            var cell = Cells.First(c => c.Row == row && c.Col == col);
+﻿using mitoSoft.Razor.WordClock.Contracts;
+using mitoSoft.Razor.WordClock.Models;
 
-            return cell.Letter;
+namespace mitoSoft.Razor.WordClock.CultureMatrixes
+{
+    internal class LetterMatrixDE : ICultureMatrix
+    {
+        public IList<MatrixCell> GetCells()
+        {
+            return this.Cells;
         }
 
-        public static List<MatrixCell> Cells = new()
+        public List<MatrixCell> Cells = new()
         {
             new MatrixCell(0, 0, "E"),
             new MatrixCell(0, 1, "S"),
@@ -142,11 +143,6 @@
             new MatrixCell(10, 8, "U"),
             new MatrixCell(10, 9, "H"),
             new MatrixCell(10, 10, "R"),
-
-            new MatrixCell(-1, -1, "•"),
-            new MatrixCell(-2, -2, "•"),
-            new MatrixCell(-3, -3, "•"),
-            new MatrixCell(-4, -4, "•"),
         };
     }
 }

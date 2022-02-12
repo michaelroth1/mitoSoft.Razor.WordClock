@@ -1,6 +1,6 @@
-﻿namespace mitoSoft.Razor.WordClock.Helper
+﻿namespace mitoSoft.Razor.WordClock.Models
 {
-    internal class MatrixCell
+    public class MatrixCell
     {
         public int Row { get; set; } = default!;
 
