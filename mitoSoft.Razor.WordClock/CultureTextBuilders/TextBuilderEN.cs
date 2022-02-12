@@ -2,7 +2,7 @@
 
 namespace mitoSoft.Razor.WordClock.TextBuilders
 {
-    internal class GermanTextBuilder : ITextBuilder
+    internal class TextBuilderEN : ITextBuilder
     {
         private readonly Random _rnd = new(DateTime.Now.Millisecond);
 
@@ -11,11 +11,11 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
             string text;
             if (minute == 0)
             {
-                text = "ES IST #mm# #hh#";
+                text = "IT IS #mm# #hh#";
             }
-            else if (_rnd.Next(0, 10) <= 5)
+            else if (_rnd.Next(0, 10) <= 7)
             {
-                text = "ES IST #mm# #hh#";
+                text = "IT IS #mm# #hh#";
             }
             else
             {
@@ -26,80 +26,77 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
             {
                 case 5:
                     {
-                        text = text.Replace("#mm#", "FÜNF NACH");
+                        text = text.Replace("#mm#", "FIVE PAST");
                         break;
                     }
                 case 10:
                     {
-                        text = text.Replace("#mm#", "ZEHN NACH");
+                        text = text.Replace("#mm#", "TEN PAST");
                         break;
                     }
                 case 15:
                     {
-                        text = text.Replace("#mm#", "VIERTEL NACH");
+                        text = text.Replace("#mm#", "QUARTER PAST");
                         break;
                     }
                 case 20:
                     {
-                        if (this._rnd.Next(0, 2) == 0)
-                            text = text.Replace("#mm#", "ZWANZIG NACH");
-                        else
-                        {
-                            text = text.Replace("#mm#", "ZEHN VOR HALB");
-                            hour = GetHour(hour + 1);
-                        }
-
+                        text = text.Replace("#mm#", "TWENTY PAST");
                         break;
                     }
                 case 25:
                     {
-                        text = text.Replace("#mm#", "FÜNF VOR HALB");
-                        hour = GetHour(hour + 1);
+                        if (this._rnd.Next(0, 2) == 0)
+                            text = text.Replace("#mm#", "FIVE TO HALF PAST");
+                        else
+                            text = text.Replace("#mm#", "TWENTYFIVE PAST");
                         break;
                     }
                 case 30:
                     {
-                        text = text.Replace("#mm#", "HALB");
-                        hour = GetHour(hour + 1);
+                        text = text.Replace("#mm#", "HALF PAST");
                         break;
                     }
                 case 35:
                     {
-                        text = text.Replace("#mm#", "FÜNF NACH HALB");
+                        if (this._rnd.Next(0, 2) == 0)
+                            text = text.Replace("#mm#", "FIVE AFTER HALF PAST");
+                        else
+                            text = text.Replace("#mm#", "TWENTYFIVE TO");
                         hour = GetHour(hour + 1);
                         break;
                     }
                 case 40:
                     {
-                        text = text.Replace("#mm#", "ZEHN NACH HALB");
+                        if (this._rnd.Next(0, 2) == 0)
+                            text = text.Replace("#mm#", "TEN AFTER HALF PAST");
+                        else
+                            text = text.Replace("#mm#", "TWENTY TO");
                         hour = GetHour(hour + 1);
                         break;
                     }
                 case 45:
                     {
-                        if (this._rnd.Next(0, 2) == 0)
-                            text = text.Replace("#mm#", "VIERTEL VOR");
-                        else
-                            text = text.Replace("#mm#", "DREIVIERTEL");
+                        text = text.Replace("#mm#", "QUARTER TO");
                         hour = GetHour(hour + 1);
                         break;
                     }
                 case 50:
                     {
-                        text = text.Replace("#mm#", "ZEHN VOR");
+                        text = text.Replace("#mm#", "TEN TO");
                         hour = GetHour(hour + 1);
                         break;
                     }
                 case 55:
                     {
-                        text = text.Replace("#mm#", "FÜNF VOR");
+                        text = text.Replace("#mm#", "FIVE TO");
                         hour = GetHour(hour + 1);
                         break;
                     }
                 case 0:
                     {
                         text = text.Replace("#mm# ", "");
-                        text = text.Replace("#hh#", "#hh#" + " UHR");
+                        text = text.Replace("#hh#", "#hh#" + " OCLOCK");
                         break;
                     }
             }
@@ -108,66 +105,63 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
             {
                 case 1:
                     {
-                        if (minute != 0)
-                            text = text.Replace("#hh#", "EINS");
-                        else
-                            text = text.Replace("#hh#", "EIN");
+                        text = text.Replace("#hh#", "ONE");
                         break;
                     }
                 case 2:
                     {
-                        text = text.Replace("#hh#", "ZWEI");
+                        text = text.Replace("#hh#", "TWO");
                         break;
                     }
                 case 3:
                     {
-                        text = text.Replace("#hh#", "DREI");
+                        text = text.Replace("#hh#", "THREE");
                         break;
                     }
                 case 4:
                     {
-                        text = text.Replace("#hh#", "VIER");
+                        text = text.Replace("#hh#", "FOUR");
                         break;
                     }
                 case 5:
                     {
-                        text = text.Replace("#hh#", "FÜNF");
+                        text = text.Replace("#hh#", "FIVE");
                         break;
                     }
                 case 6:
                     {
-                        text = text.Replace("#hh#", "SECHS");
+                        text = text.Replace("#hh#", "SIX");
                         break;
                     }
                 case 7:
                     {
-                        text = text.Replace("#hh#", "SIEBEN");
+                        text = text.Replace("#hh#", "SEVEN");
                         break;
                     }
                 case 8:
                     {
-                        text = text.Replace("#hh#", "ACHT");
+                        text = text.Replace("#hh#", "EIGHT");
                         break;
                     }
                 case 9:
                     {
-                        text = text.Replace("#hh#", "NEUN");
+                        text = text.Replace("#hh#", "NINE");
                         break;
                     }
                 case 10:
                     {
-                        text = text.Replace("#hh#", "ZEHN");
+                        text = text.Replace("#hh#", "TEN");
                         break;
                     }
                 case 11:
                     {
-                        text = text.Replace("#hh#", "ELF");
+                        text = text.Replace("#hh#", "ELEVEN");
                         break;
                     }
                 case 12:
                 case 0:
                     {
-                        text = text.Replace("#hh#", "ZWÖLF");
+                        text = text.Replace("#hh#", "TWELVE");
                         break;
                     }
             }

@@ -217,12 +217,12 @@
         if (Culture == Culture.German)
         {
             matrix = new LetterMatrixDE();
-            textBuilder = new GermanTextBuilder();
+            textBuilder = new TextBuilderDE();
         }
         else
         {
             matrix = new LetterMatrixEN();
-            textBuilder = new EnglishTextBuilder();
+            textBuilder = new TextBuilderEN();
         }
 
         this.SetCulture(textBuilder, matrix);
