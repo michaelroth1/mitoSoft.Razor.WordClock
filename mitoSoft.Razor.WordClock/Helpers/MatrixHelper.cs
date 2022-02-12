@@ -6,34 +6,36 @@ namespace mitoSoft.Razor.WordClock.Helpers
     {
         public MatrixHelper(List<string> matrix)
         {
-            Check(matrix);
             this.Matrix = GetCells(matrix);
             this.AppendEdges();
         }
 
         public List<MatrixCell> Matrix { get; private set; }
 
+        public int ColumnCount => Matrix.Max(c => c.Col);
+
+        public int RowCount => Matrix.Max(c => c.Row);
+
         public string GetLetter(int row, int col)
         {
-            var cell = this.Matrix.First(c => c.Row == row && c.Col == col);
-            return cell.Letter;
-        }
-
-        private void AppendEdges()
-        {
-            this.Matrix.Add(new MatrixCell(-1, -1, "•"));
-            this.Matrix.Add(new MatrixCell(-2, -2, "•"));
-            this.Matrix.Add(new MatrixCell(-3, -3, "•"));
-            this.Matrix.Add(new MatrixCell(-4, -4, "•"));
+            var cell = this.Matrix.FirstOrDefault(c => c.Row == row && c.Col == col);
+            if (cell == null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return cell.Letter;
+            }
         }
 
         private static List<MatrixCell> GetCells(List<string> rows)
         {
             var cells = new List<MatrixCell>();
 
-            for (int row = 0; row < 11; row++)
+            for (int row = 0; row < rows.Count; row++)
             {
-                for (int col = 0; col < 11; col++)
+                for (int col = 0; col < rows[row].Length; col++)
                 {
                     var letter = rows[row].Substring(col, 1);
 
@@ -46,19 +48,13 @@ namespace mitoSoft.Razor.WordClock.Helpers
             return cells;
         }
 
-        private static void Check(List<string> rows)
+        private void AppendEdges()
         {
-            if (rows.Count != 11)
-            {
-                throw new IndexOutOfRangeException($"Invalid row number in letter matrix: {rows.Count}");
-            }
-            foreach (var row in rows)
-            {
-                if (row.Length != 11)
-                {
-                    throw new IndexOutOfRangeException($"Invalid column length in letter matrix: {row.Length}");
-                }
-            }
+            this.Matrix.Add(new MatrixCell(-1, -1, "•"));
+            this.Matrix.Add(new MatrixCell(-1, this.ColumnCount + 1, "•"));
+            this.Matrix.Add(new MatrixCell(this.RowCount + 1, this.ColumnCount, "•"));
+            this.Matrix.Add(new MatrixCell(this.RowCount, -1, "•"));
         }
+
     }
 }

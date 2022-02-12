@@ -22,9 +22,7 @@
     public int Col { get; set; } = default!;
 
     [Parameter]
-    public ClockService ClockService { get; set; } = default!;
-
-    public string Letter => ClockService.MatrixHelper.GetLetter(this.Row, this.Col);
+    public string Letter { get; set; } = string.Empty;
 
     [Parameter]
     public List<string> Positions { get; set; } = new();

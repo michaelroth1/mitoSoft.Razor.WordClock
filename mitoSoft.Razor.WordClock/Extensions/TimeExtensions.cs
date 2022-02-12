@@ -1,7 +1,12 @@
 ﻿namespace mitoSoft.Razor.WordClock.Extensions
 {
-    internal static class HourExtensions
+    internal static class TimeExtensions
     {
+        public static int RoundMinutes(this int minutes)
+        {
+            return minutes - (minutes % 5);
+        }
+
         /// <remarks>
         /// Only hours between 1-12 are valid
         /// </remarks>

@@ -23,41 +23,38 @@ namespace mitoSoft.Razor.WordClock.Helpers
 
         public ICulture Culture { get; }
 
-
         public bool GetPositions(out List<string> cells)
         {
-            if (DateTime.Now.Minute != _min)
-            {
-                var minuteCells = SetEdges(DateTime.Now.Minute - RoundMinutes(DateTime.Now.Minute));
-                this._min = DateTime.Now.Minute;
+            var time = DateTime.Now;
 
-                var time = DateTime.Now; //(1982, 3, 7, 12, 15, 45); //for testing
+            if (time.Minute != _min)
+            { 
+                var minuteCells = GetEdgePositions(time.Minute - time.Minute.RoundMinutes());
+                this._min = time.Minute;
 
                 var hour = time.Hour.GetShortHour();
-                var minute = RoundMinutes(time.Minute);
+                var minute = time.Minute.RoundMinutes();
 
                 if (hour != _hour || minute != _minute)
                 {
                     string text = this.Culture.GetText(hour, minute);
 
-                    this._textCells = SetText(text);
+                    this._textCells = GetLetterPositions(text);
 
                     _hour = hour;
                     _minute = minute;
-
                 }
 
                 this._textCells.AddRange(minuteCells);
                 cells = this._textCells;
-
                 return true;
             }
-            cells = new();
 
+            cells = new();
             return false;
         }
 
-        private static List<string> SetEdges(int minutes)
+        private List<string> GetEdgePositions(int minutes)
         {
             var result = new List<string>();
 
@@ -71,22 +68,22 @@ namespace mitoSoft.Razor.WordClock.Helpers
                 case 2:
                     {
                         result.Add("-1;-1");
-                        result.Add("-2;-2");
+                        result.Add($"-1;{this.MatrixHelper.ColumnCount}");
                         break;
                     }
                 case 3:
                     {
                         result.Add("-1;-1");
-                        result.Add("-2;-2");
-                        result.Add("-3;-3");
+                        result.Add($"-1;{this.MatrixHelper.ColumnCount}");
+                        result.Add($"{this.MatrixHelper.RowCount};{this.MatrixHelper.ColumnCount}");
                         break;
                     }
                 case 4:
                     {
                         result.Add("-1;-1");
-                        result.Add("-2;-2");
-                        result.Add("-3;-3");
-                        result.Add("-4;-4");
+                        result.Add($"-1;{this.MatrixHelper.ColumnCount}");
+                        result.Add($"{this.MatrixHelper.RowCount};{this.MatrixHelper.ColumnCount}");
+                        result.Add($"{this.MatrixHelper.RowCount};-1");
                         break;
                     }
                 default:
@@ -98,18 +95,18 @@ namespace mitoSoft.Razor.WordClock.Helpers
             return result;
         }
 
-        private List<string> SetText(string text)
+        private List<string> GetLetterPositions(string text)
         {
             var result = new List<string>();
 
-            string[] a = text.Replace(" ", "§").Split("§");
-            string word = a[0];
+            var words = text.Replace(" ", "§").Split("§").ToList();
             int i = 0;
-            for (int row = 0; row <= this.MatrixHelper.Matrix.Max(c => c.Row); row++)
+            string word = words[i];
+            for (int row = 0; row <= this.MatrixHelper.RowCount; row++)
             {
-                for (int col = 0; col <= this.MatrixHelper.Matrix.Max(c => c.Col); col++)
+                for (int col = 0; col <= this.MatrixHelper.ColumnCount; col++)
                 {
-                    var actualText = this.GetTextOfMatrix(row, col, word.Length);
+                    var actualText = this.GetTextByMatrixPosition(row, col, word.Length);
                     if (actualText == word)
                     {
                         for (int pos = col; pos < col + word.Length; pos++)
@@ -120,10 +117,14 @@ namespace mitoSoft.Razor.WordClock.Helpers
                         col = col + word.Length - 1;
 
                         i += 1;
-                        if (a.GetUpperBound(0) >= i)
-                            word = a[i];
+                        if (i < words.Count)
+                        {
+                            word = words[i];
+                        }
                         else
+                        {
                             return result;
+                        }
                     }
                 }
             }
@@ -131,27 +132,19 @@ namespace mitoSoft.Razor.WordClock.Helpers
             return result;
         }
 
-        public string GetTextOfMatrix(int row, int column, int length)
+        public string GetTextByMatrixPosition(int row, int column, int length)
         {
-            var maxCols = this.MatrixHelper.Matrix.Max(c => c.Col) + 1;
-            if (column + length > maxCols)
+            string text = string.Empty;
+            for (int pos = 0; pos <= length - 1; pos++)
             {
-                return "";
-            }
-
-            string text = "";
-            for (int i = 0; i <= length - 1; i++)
-            {
-                var letter = this.MatrixHelper.Matrix.First(c => c.Row == row && c.Col == column + i).Letter;
-
+                if (pos > this.MatrixHelper.ColumnCount)
+                {
+                    break;
+                }
+                var letter = this.MatrixHelper.GetLetter(row, column + pos);
                 text += letter;
             }
             return text;
-        }
-
-        public static int RoundMinutes(int minutes)
-        {
-            return minutes - (minutes % 5);
         }
     }
 }
