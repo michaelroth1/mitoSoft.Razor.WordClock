@@ -1,38 +1,64 @@
-﻿using mitoSoft.Razor.WordClock.Contracts;
-using mitoSoft.Razor.WordClock.Models;
+﻿using mitoSoft.Razor.WordClock.Models;
 
 namespace mitoSoft.Razor.WordClock.Helpers
 {
     public class MatrixHelper
     {
-
-        private readonly IList<MatrixCell> _matrix;
-
-        public MatrixHelper(ICultureMatrix matrix)
+        public MatrixHelper(List<string> matrix)
         {
-            _matrix = matrix.GetCells();
-            var l = this._matrix.ToList();
-            l.AddRange(Edges);
-            this._matrix = l;
+            Check(matrix);
+            this.Matrix = GetCells(matrix);
+            this.AppendEdges();
         }
 
-        public IList<MatrixCell> GetMatrix()
-        {
-            return _matrix;
-        }
+        public List<MatrixCell> Matrix { get; private set; }
 
         public string GetLetter(int row, int col)
         {
-            var cell = this.GetMatrix().First(c => c.Row == row && c.Col == col);
+            var cell = this.Matrix.First(c => c.Row == row && c.Col == col);
             return cell.Letter;
         }
 
-        private static readonly List<MatrixCell> Edges = new()
+        private void AppendEdges()
         {
-            new MatrixCell(-1, -1, "•"),
-            new MatrixCell(-2, -2, "•"),
-            new MatrixCell(-3, -3, "•"),
-            new MatrixCell(-4, -4, "•"),
-        };
+            this.Matrix.Add(new MatrixCell(-1, -1, "•"));
+            this.Matrix.Add(new MatrixCell(-2, -2, "•"));
+            this.Matrix.Add(new MatrixCell(-3, -3, "•"));
+            this.Matrix.Add(new MatrixCell(-4, -4, "•"));
+        }
+
+        private static List<MatrixCell> GetCells(List<string> rows)
+        {
+            var cells = new List<MatrixCell>();
+
+            for (int row = 0; row < 11; row++)
+            {
+                for (int col = 0; col < 11; col++)
+                {
+                    var letter = rows[row].Substring(col, 1);
+
+                    var matrixCell = new MatrixCell(row, col, letter);
+
+                    cells.Add(matrixCell);
+                }
+            }
+
+            return cells;
+        }
+
+        private static void Check(List<string> rows)
+        {
+            if (rows.Count != 11)
+            {
+                throw new IndexOutOfRangeException($"Invalid row number in letter matrix: {rows.Count}");
+            }
+            foreach (var row in rows)
+            {
+                if (row.Length != 11)
+                {
+                    throw new IndexOutOfRangeException($"Invalid column length in letter matrix: {row.Length}");
+                }
+            }
+        }
     }
 }

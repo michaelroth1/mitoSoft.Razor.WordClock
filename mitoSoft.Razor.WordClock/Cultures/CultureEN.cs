@@ -1,10 +1,26 @@
 ﻿using mitoSoft.Razor.WordClock.Contracts;
+using mitoSoft.Razor.WordClock.Extensions;
 
-namespace mitoSoft.Razor.WordClock.TextBuilders
+namespace mitoSoft.Razor.WordClock.Cultures
 {
-    internal class TextBuilderEN : ITextBuilder
+    internal class CultureEN : ICulture
     {
         private readonly Random _rnd = new(DateTime.Now.Millisecond);
+
+        public IList<string> Layout { get; } = new List<string>()
+        {
+            "ITLISASAMPM",
+            "ACQUARTERDC",
+            "TWENTYFIVEX",
+            "HALFSTENFTO",
+            "OAFTEROHALF",
+            "PASTERUNINE",
+            "ONESIXTHREE",
+            "FOURFIVETWO",
+            "EIGHTELEVEN",
+            "SEVENTWELVE",
+            "TENSEOCLOCK",
+        };
 
         public string GetText(int hour, int minute)
         {
@@ -63,7 +79,7 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
                             text = text.Replace("#mm#", "FIVE AFTER HALF PAST");
                         else
                             text = text.Replace("#mm#", "TWENTYFIVE TO");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 40:
@@ -72,25 +88,25 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
                             text = text.Replace("#mm#", "TEN AFTER HALF PAST");
                         else
                             text = text.Replace("#mm#", "TWENTY TO");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 45:
                     {
                         text = text.Replace("#mm#", "QUARTER TO");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 50:
                     {
                         text = text.Replace("#mm#", "TEN TO");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 55:
                     {
                         text = text.Replace("#mm#", "FIVE TO");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 0:
@@ -167,18 +183,6 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
             }
 
             return text;
-        }
-
-        private static int GetHour(int hour)
-        {
-            if (hour == 13)
-            {
-                return 1;
-            }
-            else
-            {
-                return hour;
-            }
         }
     }
 }

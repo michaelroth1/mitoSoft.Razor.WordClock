@@ -10,5 +10,6 @@ namespace mitoSoft.Razor.WordClock.Enums
     {
         German,
         English,
+        French,
     }
 }

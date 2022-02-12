@@ -1,5 +1,4 @@
-﻿@using mitoSoft.Razor.WordClock.CultureMatrixes
-@using mitoSoft.Razor.WordClock.TextBuilders
+﻿@using mitoSoft.Razor.WordClock.Cultures
 
 <div @onclick="@OnClicked" class="container grid-square">
     <div class="row">
@@ -205,27 +204,28 @@
 
     public ClockService ClockService = default!;
 
-    public void SetCulture(ITextBuilder textBuilder, ICultureMatrix matrix)
+    public void SetCulture(ICulture culture)
     {
-        this.ClockService = new(textBuilder, matrix);
+        this.ClockService = new(culture);
     }
 
     protected override void OnInitialized()
     {
-        ITextBuilder textBuilder;
-        ICultureMatrix matrix;
+        ICulture culture;
         if (Culture == Culture.German)
         {
-            matrix = new LetterMatrixDE();
-            textBuilder = new TextBuilderDE();
+            culture = new CultureDE();
+        }
+        else if (Culture == Culture.French)
+        {
+            culture = new CultureFR();
         }
         else
         {
-            matrix = new LetterMatrixEN();
-            textBuilder = new TextBuilderEN();
+            culture = new CultureEN();
         }
 
-        this.SetCulture(textBuilder, matrix);
+        this.SetCulture(culture);
 
         base.OnInitialized();
     }

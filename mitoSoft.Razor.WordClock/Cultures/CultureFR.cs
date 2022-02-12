@@ -1,32 +1,48 @@
 ﻿using mitoSoft.Razor.WordClock.Contracts;
+using mitoSoft.Razor.WordClock.Extensions;
 
-namespace mitoSoft.Razor.WordClock.TextBuilders
+namespace mitoSoft.Razor.WordClock.Cultures
 {
-    internal class TextBuilderDE : ITextBuilder
+    internal class CultureFR : ICulture
     {
         private readonly Random _rnd = new(DateTime.Now.Millisecond);
+
+        public IList<string> Layout { get; } = new List<string>()
+        {
+            "ILNESTODEUX",
+            "QUATRETROIS",
+            "NEUFUNEGHTZ",
+            "SEPTDAGERTZ",
+            "HUITSIXCINQ",
+            "MIDIXMINUIT",
+            "ONZERHEURES",
+            "MOINSOLEDIX",
+            "ETRQUARTPMD",
+            "VINGT-CINQU",
+            "ETSDEMIEPAM",
+        };
 
         public string GetText(int hour, int minute)
         {
             string text;
             if (minute == 0)
             {
-                text = "ES IST #mm# #hh#";
+                text = "IL EST #hh# #mm#";
             }
             else if (_rnd.Next(0, 10) <= 7)
             {
-                text = "ES IST #mm# #hh#";
+                text = "IL EST #hh# #mm#";
             }
             else
             {
-                text = "#mm# #hh#";
+                text = "#hh# #mm#";
             }
 
             switch (minute)
             {
                 case 5:
                     {
-                        text = text.Replace("#mm#", "FÜNF NACH");
+                        text = text.Replace("#mm#", "CIN");
                         break;
                     }
                 case 10:
@@ -46,33 +62,33 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
                         else
                         {
                             text = text.Replace("#mm#", "ZEHN VOR HALB");
-                            hour = GetHour(hour + 1);
+                            hour = (hour + 1).GetShortHour();
                         }
 
                         break;
                     }
                 case 25:
                     {
-                        text = text.Replace("#mm#", "FÜNF VOR HALB");
-                        hour = GetHour(hour + 1);
+                        text = text.Replace("#mm#", "VINGT-CINQU");
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 30:
                     {
-                        text = text.Replace("#mm#", "HALB");
-                        hour = GetHour(hour + 1);
+                        text = text.Replace("#mm#", "ET DEMI");
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 35:
                     {
                         text = text.Replace("#mm#", "FÜNF NACH HALB");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 40:
                     {
                         text = text.Replace("#mm#", "ZEHN NACH HALB");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 45:
@@ -81,19 +97,19 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
                             text = text.Replace("#mm#", "VIERTEL VOR");
                         else
                             text = text.Replace("#mm#", "DREIVIERTEL");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 50:
                     {
                         text = text.Replace("#mm#", "ZEHN VOR");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 55:
                     {
                         text = text.Replace("#mm#", "FÜNF VOR");
-                        hour = GetHour(hour + 1);
+                        hour = (hour + 1).GetShortHour();
                         break;
                     }
                 case 0:
@@ -173,18 +189,6 @@ namespace mitoSoft.Razor.WordClock.TextBuilders
             }
 
             return text;
-        }
-
-        private static int GetHour(int hour)
-        {
-            if (hour == 13)
-            {
-                return 1;
-            }
-            else
-            {
-                return hour;
-            }
         }
     }
 }
