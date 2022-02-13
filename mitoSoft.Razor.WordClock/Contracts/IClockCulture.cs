@@ -1,6 +1,6 @@
 ﻿namespace mitoSoft.Razor.WordClock.Contracts
 {
-    public interface ICulture
+    public interface IClockCulture
     {
         string GetText(int hour, int minute);
 

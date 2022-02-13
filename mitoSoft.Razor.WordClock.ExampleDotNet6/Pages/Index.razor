@@ -1,5 +1,4 @@
 ﻿@page "/"
-@using mitoSoft.Razor.WordClock.Enums
 
 @implements IDisposable
 
@@ -20,7 +19,7 @@
 
 <PageTitle>Index</PageTitle>
 
-<mitoSoft.Razor.WordClock.View Culture="Culture.French" OnClick="@OnClockClicked" @ref="_clock" />
+<mitoSoft.Razor.WordClock.View OnClick="@OnClockClicked" @ref="_clock" />
 
 @code {
     private mitoSoft.Razor.WordClock.View _clock = default!;
@@ -29,6 +28,7 @@
     {
         if (firstRender)
         {
+            this._clock.ClockService = new mitoSoft.Razor.WordClock.ClockService(new mitoSoft.Razor.WordClock.Cultures.ClockCultureFR());
             this._clock.StartClock();
         }
 

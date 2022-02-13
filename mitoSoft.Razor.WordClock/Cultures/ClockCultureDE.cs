@@ -3,7 +3,7 @@ using mitoSoft.Razor.WordClock.Extensions;
 
 namespace mitoSoft.Razor.WordClock.Cultures
 {
-    internal class CultureDE : ICulture
+    public class ClockCultureDE : IClockCulture
     {
         private readonly Random _rnd = new(DateTime.Now.Millisecond);
 

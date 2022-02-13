@@ -2,7 +2,7 @@
 
 namespace mitoSoft.Razor.WordClock.Helpers
 {
-    public class MatrixHelper
+    internal class MatrixHelper
     {
         public MatrixHelper(List<string> matrix)
         {

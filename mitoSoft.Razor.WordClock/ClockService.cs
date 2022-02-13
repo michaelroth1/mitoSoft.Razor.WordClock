@@ -1,11 +1,45 @@
 ﻿using mitoSoft.Razor.WordClock.Contracts;
+using mitoSoft.Razor.WordClock.Cultures;
 using mitoSoft.Razor.WordClock.Extensions;
+using mitoSoft.Razor.WordClock.Helpers;
 
-namespace mitoSoft.Razor.WordClock.Helpers
+namespace mitoSoft.Razor.WordClock
 {
     public class ClockService
     {
-        public ClockService(ICulture culture)
+        public ClockService()
+        {
+            var culturInfo = Thread.CurrentThread.CurrentUICulture;
+
+            if (culturInfo.TwoLetterISOLanguageName.Equals("de"))
+            {
+                this.SetCulture(new ClockCultureDE());
+            }
+            else if (culturInfo.TwoLetterISOLanguageName.Equals("fr"))
+            {
+                this.SetCulture(new ClockCultureFR());
+            }
+            else
+            {
+                this.SetCulture(new ClockCultureEN());
+            }
+        }
+
+        public ClockService(IClockCulture culture)
+        {
+            this.SetCulture(culture);
+        }
+
+        private List<string> _textCells = new();
+        private int _hour = -1;
+        private int _minute = -1;
+        private int _min = -1;
+
+        public IClockCulture Culture { get; private set; } = default!;
+
+        internal MatrixHelper MatrixHelper { get; private set; } = default!;
+
+        private void SetCulture(IClockCulture culture)
         {
             this.Culture = culture;
 
@@ -14,21 +48,12 @@ namespace mitoSoft.Razor.WordClock.Helpers
             this.MatrixHelper = new MatrixHelper(matrix);
         }
 
-        private List<string> _textCells = new();
-        private int _hour = -1;
-        private int _minute = -1;
-        private int _min = -1;
-
-        public MatrixHelper MatrixHelper { get; }
-
-        public ICulture Culture { get; }
-
         public bool GetPositions(out List<string> cells)
         {
             var time = DateTime.Now;
 
             if (time.Minute != _min)
-            { 
+            {
                 var minuteCells = GetEdgePositions(time.Minute - time.Minute.RoundMinutes());
                 this._min = time.Minute;
 

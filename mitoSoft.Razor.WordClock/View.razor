@@ -1,54 +1,29 @@
-﻿@using mitoSoft.Razor.WordClock.Cultures
+﻿@using System.Globalization
+@using mitoSoft.Razor.WordClock.Cultures
 
-<div @onclick="@OnClicked" class="container grid-square">
+@if (this.ClockService != null)
+{
+    <div @onclick="@OnClicked" class="container grid-square">
 
-    @for (int row = -1; row < this.ClockService.MatrixHelper.RowCount + 1; row++)
-    {
-        <div class="row">
-            @for (int col = -1; col < this.ClockService.MatrixHelper.ColumnCount + 1; col++)
-            {
-                <div class="col">
-                    <Cell Letter="@ClockService.MatrixHelper.GetLetter(row, col)" Positions="@_positions" Row="@row" Col="@col" />
-                </div>
-            }
-        </div>
-    }
-</div>
+        @for (int row = -1; row < this.ClockService.MatrixHelper.RowCount + 1; row++)
+        {
+            <div class="row">
+                @for (int col = -1; col < this.ClockService.MatrixHelper.ColumnCount + 1; col++)
+                {
+                    <div class="col">
+                        <Cell Letter="@ClockService.MatrixHelper.GetLetter(row, col)" Positions="@_positions" Row="@row" Col="@col" />
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
 
 @code {
     private List<string> _positions { get; set; } = default!;
     private bool _cancelTask = false;
 
-    public ClockService ClockService = default!;
-
-    public void SetCulture(ICulture culture)
-    {
-        this.ClockService = new(culture);
-    }
-
-    protected override void OnInitialized()
-    {
-        ICulture culture;
-        if (Culture == Culture.German)
-        {
-            culture = new CultureDE();
-        }
-        else if (Culture == Culture.French)
-        {
-            culture = new CultureFR();
-        }
-        else
-        {
-            culture = new CultureEN();
-        }
-
-        this.SetCulture(culture);
-
-        base.OnInitialized();
-    }
-
-    [Parameter]
-    public Culture Culture { get; set; } = Culture.German;
+    public ClockService ClockService = new ClockService();
 
     [Parameter]
     public Action OnClick { get; set; } = default!;
