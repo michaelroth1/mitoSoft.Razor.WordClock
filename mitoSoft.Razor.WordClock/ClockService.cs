@@ -9,13 +9,13 @@ namespace mitoSoft.Razor.WordClock
     {
         public ClockService()
         {
-            var culturInfo = Thread.CurrentThread.CurrentUICulture;
+            var cultureInfo = Thread.CurrentThread.CurrentUICulture;
 
-            if (culturInfo.TwoLetterISOLanguageName.Equals("de"))
+            if (cultureInfo.TwoLetterISOLanguageName.Equals("de"))
             {
                 this.SetCulture(new ClockCultureDE());
             }
-            else if (culturInfo.TwoLetterISOLanguageName.Equals("fr"))
+            else if (cultureInfo.TwoLetterISOLanguageName.Equals("fr"))
             {
                 this.SetCulture(new ClockCultureFR());
             }
