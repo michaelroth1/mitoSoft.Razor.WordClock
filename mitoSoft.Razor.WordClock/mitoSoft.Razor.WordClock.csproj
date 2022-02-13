@@ -4,6 +4,15 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>mitoSoft</Authors>
+    <Copyright>(c) 2022 mitoSoft</Copyright>
+    <PackageProjectUrl>https://github.com/michaelroth1/mitoSoft.Razor.WordClock</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/michaelroth1/mitoSoft.Razor.WordClock</RepositoryUrl>
+    <PackageTags>wordclock Razor Blazor word clock</PackageTags>
+    <Version>1.0.1</Version>
+    <Description>A razor library containing a work-clock element for displaying it on Blazor websites.</Description>
+    <PackageIcon>mitoSoft.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +25,13 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="mitoSoft.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
