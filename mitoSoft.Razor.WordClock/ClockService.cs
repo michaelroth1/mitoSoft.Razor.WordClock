@@ -19,6 +19,10 @@ namespace mitoSoft.Razor.WordClock
             {
                 this.SetCulture(new ClockCultureFR());
             }
+            else if (cultureInfo.TwoLetterISOLanguageName.Equals("es"))
+            {
+                this.SetCulture(new ClockCultureES());
+            }
             else
             {
                 this.SetCulture(new ClockCultureEN());

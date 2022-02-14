@@ -10,9 +10,10 @@
     <PackageProjectUrl>https://github.com/michaelroth1/mitoSoft.Razor.WordClock</PackageProjectUrl>
     <RepositoryUrl>https://github.com/michaelroth1/mitoSoft.Razor.WordClock</RepositoryUrl>
     <PackageTags>wordclock Razor Blazor word clock</PackageTags>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Description>A razor library containing a work-clock element for displaying it on Blazor websites.</Description>
     <PackageIcon>mitoSoft.png</PackageIcon>
+    <PackageReleaseNotes>[Feature] added spanish culture</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
